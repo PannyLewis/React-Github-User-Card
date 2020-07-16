@@ -24,7 +24,7 @@ class App extends React.Component {
         console.log(response);
 
         this.setState({
-          users: response.data,
+          users: response,
         });
       })
       .catch((err) => console.log(err));
@@ -35,7 +35,7 @@ class App extends React.Component {
         console.log(response);
 
         this.setState({
-          following: response.data.following,
+          following: response,
         });
       })
       .catch((err) => console.log(err));
@@ -45,15 +45,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Github Usercards</h1>
-        {this.state.users.map((user) => {
-          return <Users key={user.id} user={user} />;
-        })}
-        {this.state.following.map((follow) => {
-          return <Following key={follow.id} follow={follow} />;
+        <Users users={this.state.users} />
+        {/* {this.state.following.map((follow) => {
+           <Following key={follow.id} follow={follow} />; */}
         })}
         {/* <Card /> */}
-        <Users users={this.state.users} />
-        <Following follow={this.state.follow} />
       </div>
     );
   }
