@@ -1,6 +1,6 @@
 import React from "react";
-import Users from "./components/Users";
-import Following from "./components/Following";
+import Users from "./Users";
+import Following from "./Following";
 
 function Card() {
   return (
