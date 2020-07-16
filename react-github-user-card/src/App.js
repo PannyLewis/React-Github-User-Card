@@ -1,34 +1,59 @@
 import React from "react";
 import axios from "axios";
 
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      userData: [],
-    };
-  }
+const App = () => {
+  const [users, setUsers] = useState([]);
+  const [following, setFollwing] = useState([]);
 
-  componentDidMount() {
-    axios
-      .get(`https://api.github.com/users/PannyLewis`)
-      .then((response) => {
-        console.log(response);
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        users: [],
+        following: [],
+      };
+    }
 
-        this.setState({
-          userData: response.data,
-        });
-      })
-      .catch((err) => console.log(err));
-  }
+    componentDidMount() {
+      axios
+        .get(`https://api.github.com/users/PannyLewis`)
+        .then((response) => {
+          console.log(response);
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Github Usercards</h1>
-      </div>
-    );
+          this.setState({
+            users: response.data,
+          });
+        })
+        .catch((err) => console.log(err));
+
+      axios
+        .get(`https://api.github.com/users/PannyLewis/following`)
+        .then((response) => {
+          console.log(response);
+
+          this.setState({
+            following: response.data.following,
+          });
+        })
+        .catch((err) => console.log(err));
+    }
+
+    render() {
+      return (
+        <div className="App">
+          <h1>Github Usercards</h1>
+          {this.state.users.map((user) => {
+            return <Users key={user.id} user={user} />;
+          })}
+
+          {this.state.following.map((follow) => {
+            return <Following key={follow.id} follow={follow} />;
+          })}
+          <Cards />
+        </div>
+      );
+    }
   }
-}
+};
 
 export default App;
