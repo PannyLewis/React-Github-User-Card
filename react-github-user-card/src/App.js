@@ -5,23 +5,27 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: [],
+      userData: [],
     };
   }
 
   componentDidMount() {
     axios
       .get(`https://api.github.com/users/PannyLewis`)
-      .then((res) => console.log(res))
+      .then((response) => {
+        // console.log(res)
+        console.log(userData);
+        this.setState({
+          userData: response.data,
+        });
+      })
       .catch((err) => console.log(err));
   }
 
   render() {
-    // console.log(users);
     return (
       <div className="App">
-        <h1>Git Hub Users</h1>
-        <div>{/* {this.state.users.map((user) => ())} */}</div>
+        <h1>Github Usercards</h1>
       </div>
     );
   }
