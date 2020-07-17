@@ -48,8 +48,6 @@ class App extends React.Component {
         <Users users={this.state.users} />
         {/* {this.state.following.map((follow) => {
            <Following key={follow.id} follow={follow} />; */}
-        })}
-        {/* <Card /> */}
       </div>
     );
   }

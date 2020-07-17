@@ -11,10 +11,13 @@ const StyledDiv = styled.div`
 `;
 
 const Users = (props) => {
-  console.log(props.user);
+  console.log(props.users);
   return (
     <div>
-      <StyledDiv>hello</StyledDiv>
+      <StyledDiv key={props.users.id}>
+        hello
+        <h2>{props.users.name}</h2>
+      </StyledDiv>
     </div>
   );
 
