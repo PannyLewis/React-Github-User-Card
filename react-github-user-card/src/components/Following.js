@@ -13,11 +13,14 @@ const StyledDiv = styled.div`
 const Following = (props) => {
   console.log(props.following);
   return (
-    <StyledDiv /*key={props.follow.id}*/>
-      Hello
-      {/* <h2>{props.follow.name}</h2>
+    <StyledDiv key={props.follow.id}>
+      <h2>{props.follow.login}</h2>
       <p>{props.follow.email}</p>
-      <img src={props.follow.avatar_url} alt="follow" /> */}
+      <img src={props.follow.avatar_url} alt="follow" />
+      <img
+        src={`http://ghchart.rshah.org/${props.follow.login}`}
+        alt="follow"
+      />
     </StyledDiv>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import Card from "./components/Card";
 import Users from "./components/Users";
 import Following from "./components/Following";
 
@@ -20,22 +19,24 @@ class App extends React.Component {
   componentDidMount() {
     axios
       .get(`https://api.github.com/users/PannyLewis`)
+
       .then((response) => {
         console.log(response);
 
         this.setState({
-          users: response,
+          users: response.data,
         });
       })
       .catch((err) => console.log(err));
 
     axios
       .get(`https://api.github.com/users/PannyLewis/following`)
+
       .then((response) => {
         console.log(response);
 
         this.setState({
-          following: response,
+          following: response.data,
         });
       })
       .catch((err) => console.log(err));
@@ -46,8 +47,9 @@ class App extends React.Component {
       <div className="App">
         <h1>Github Usercards</h1>
         <Users users={this.state.users} />
-        {/* {this.state.following.map((follow) => {
-           <Following key={follow.id} follow={follow} />; */}
+        {this.state.following.map((follow) => (
+          <Following key={follow.id} follow={follow} />
+        ))}
       </div>
     );
   }

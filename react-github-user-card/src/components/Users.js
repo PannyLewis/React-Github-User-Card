@@ -15,8 +15,13 @@ const Users = (props) => {
   return (
     <div>
       <StyledDiv key={props.users.id}>
-        hello
         <h2>{props.users.name}</h2>
+        <p>{props.users.email}</p>
+        <img src={props.users.avatar_url} alt="user" />
+        <img
+          src={`http://ghchart.rshah.org/${props.users.login}`}
+          alt="follow"
+        />
       </StyledDiv>
     </div>
   );
